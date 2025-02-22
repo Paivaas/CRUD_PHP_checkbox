@@ -27,7 +27,6 @@ if (isset($_POST['create_cadastro'])) {
     }
     $statement->close();
 
-    // Redirecionamento só ocorre se não houver saída antes
     header('Location: index.php');
     exit();
 }
@@ -35,8 +34,8 @@ if (isset($_POST['create_cadastro'])) {
 // Alterando informações do cadastro escolhido - UPDATE
 if (isset($_POST['edit'])) {
 
-    $usuario_id = mysqli_real_escape_string($mysqli, $_POST['usuario_id']);
-    if (empty($usuario_id)) {
+    $check_id = mysqli_real_escape_string($mysqli, $_POST['check_id']);
+    if (empty($check_id)) {
         die('ID não encontrado');
     }
 
@@ -51,7 +50,7 @@ if (isset($_POST['edit'])) {
     $query = "UPDATE tbl_checkbox SET check1 = ?, check2 = ?, check3 = ? WHERE id = ?";
     $statement = $mysqli->prepare($query);
 
-    $statement->bind_param("sssi", $programmer, $doctor, $nurse, $usuario_id);
+    $statement->bind_param("sssi", $programmer, $doctor, $nurse, $check_id);
     if ($statement->execute()) {
         echo "Cadastro alterado";
     } else {
@@ -66,8 +65,8 @@ if (isset($_POST['edit'])) {
 // Deletando
 if (isset($_POST['delete_check'])) {
 
-    $usuario_id = mysqli_real_escape_string($mysqli, $_POST['delete_check']);
-    if (empty($usuario_id)) {
+    $check_id = mysqli_real_escape_string($mysqli, $_POST['delete_check']);
+    if (empty($check_id)) {
         die('ID não encontrado');
     }
 
@@ -77,7 +76,7 @@ if (isset($_POST['delete_check'])) {
         die('Error preparing statement: ' . $mysqli->error);
     }
 
-    $statement->bind_param("i", $usuario_id);
+    $statement->bind_param("i", $check_id);
     if ($statement->execute()) {
         echo "Cadastro excluído";
     } else {

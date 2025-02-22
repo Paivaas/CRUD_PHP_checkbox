@@ -41,58 +41,58 @@ require("conexao.php");
 
 
 
-    <div class="container rolagem">
-            <div class="card-body">
-                <table border='1'>
-                    <thead>
-                        <tr class="table-info">
-                            <th class="text-white">Nome</th>
-                            <th class="text-white">Data de nascimento</th>
-                            <th class="text-white">E-mail</th>
-                            <th class="text-white">Celular pra contato</th>
-                            <th class="text-white">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+    <div>
+        <div>
+            <table border='1'>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Checkbox 1</th>
+                        <th>Checkbox 2</th>
+                        <th>Checkbox 3</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                        <!-- Mostrando cadastros - SELECT -->
-                        <?php
-                        $query = "SELECT * from tbl_checkbox";
-                        $results = mysqli_query($mysqli, $query);
-                        if (mysqli_num_rows($results) > 0) {
-                            foreach ($results as $results) {
+                    <!-- Mostrando cadastros - SELECT -->
+                    <?php
+                    $query = "SELECT * from tbl_checkbox";
+                    $results = mysqli_query($mysqli, $query);
+                    if (mysqli_num_rows($results) > 0) {
+                        foreach ($results as $results) {
 
-                        ?>
-                                <div style="background-color: #068ED0;">
-                                    <tr>
-                                        <td><?= $results['id'] ?></td>
-                                        <td><?= $results['check1'] ?></td>
-                                        <td><?= $results['check2'] ?></td>
-                                        <td><?= $results['check3'] ?></td>
-                                        <td style="display: flex;">
-                                            <a href="edit.php?id=<?= $results['id'] ?>" class="btn">
-                                                <p>Editar</p>
-                                            </a>
-                                            <form action="create.php" method="POST" class="d-inline">
-                                                <button type="submit" name="delete_check" value="<?= $results['id'] ?>" class="btn">
-                                                    <p>DEletar</p>
-                                                </button>
-                                            </form>
+                    ?>
+                            <div>
+                                <tr>
+                                    <td><?= $results['id'] ?></td>
+                                    <td><?= $results['check1'] ?></td>
+                                    <td><?= $results['check2'] ?></td>
+                                    <td><?= $results['check3'] ?></td>
+                                    <td style="display: flex;">
+                                        <a href="edit.php?id=<?= $results['id'] ?>" class="btn">
+                                            <p>Editar</p>
+                                        </a>
+                                        <form action="create.php" method="POST" class="d-inline">
+                                            <button type="submit" name="delete_check" value="<?= $results['id'] ?>" class="btn">
+                                                <p>DEletar</p>
+                                            </button>
+                                        </form>
 
-                                        </td>
-                                    </tr>
-                                </div>
-                        <?php
-                            }
-                        } else {
-                            echo "Nenhum cadastro encontrado.";
+                                    </td>
+                                </tr>
+                            </div>
+                    <?php
                         }
-                        ?>
+                    } else {
+                        echo "Nenhum cadastro encontrado.";
+                    }
+                    ?>
 
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
+    </div>
 
 </body>
 

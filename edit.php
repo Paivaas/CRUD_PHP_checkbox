@@ -17,8 +17,8 @@ require("conexao.php");
  <?php
 
     if (isset($_GET['id'])) {
-        $usuario_id = mysqli_real_escape_string($mysqli, $_GET['id']);
-        $query = "SELECT * from tbl_checkbox WHERE id='$usuario_id'";
+        $check_id = mysqli_real_escape_string($mysqli, $_GET['id']);
+        $query = "SELECT * from tbl_checkbox WHERE id='$check_id'";
         $results = mysqli_query($mysqli, $query);
 
         if (mysqli_num_rows($results) > 0) {
@@ -30,7 +30,7 @@ require("conexao.php");
             <legend>Edit</legend>
             <p>ID: <?= $usuario['id'] ?></p>
 
-            <input type="hidden" name="usuario_id" id="usuario_id" value="<?= $usuario['id'] ?>">
+            <input type="hidden" name="check_id" id="check_id" value="<?= $usuario['id'] ?>">
 
             <div>
                 <p>Programmer: <?= $usuario['check1'] ?></p>
